@@ -35,6 +35,7 @@ ____
     + double : 8바이트
  
 [_1바이트 = 8비트_]
+
 [_영어 한글 모두 문자 하나 당 2바이트 유니코드_]
 
 + Reference Type : 배열, 또는 객체에 대한 주소값, 포인터 개념
@@ -132,4 +133,94 @@ byte b = (byte)n; // 4바이트 int 타입에서 1바이트인 byte 타입으로
 
 double d = 1.9;
 int n = (int)d; // 소숫점 이하 0.9의 값이 손실되어 n=1
+```
+____
+
+## Scanner
+```java
+import java.util.Scanner;
+Scanner a = new Scanner(System.in);
+
+String name = scanner.next();
+String city = scanner.next();
+int age = scanner.nextInt();
+double weight = scanner.nextDouble();
+Boolean single = scanner.nextBoolean();
+```
+
+## Operator
+
++ 증감 연산
+
+연산자|내용|연산자|내용
+---|---|---|---
+a++ | 먼저 a 반환 후 1 증가시킴 | ++a | 1 증가시킨 후 반환
+a-- | 먼저 a 반환 후 1 감소시킴 | --a | 1 감소시킨 후 반환
+
++ 논리 연산
+
+연산자|내용|예제|결과
+---|---|---|---
+NOT(!) | 역 | !(3<5) | false
+OR(\|\|) | 모두 false인 경우에만 false | (3>5) \|\| (1==1) | true
+AND(&&) | 모두 ture인 경우에만 true | (3>5) && (1==1) | false
+XOR(^) | 서로 다를 때 true | (3>5) ^ (1==1) | true
+
++ 삼항 연산자 (Ternary Operator)
+  + 세 개의 피연산자로 구성
+  + condition? op2 : op3
+    + condition이 true이면 op2, false이면 op3
+
++ 비트 연산
+  + 비트 논리 연산과 비프 시프트 연산 존재
+
+1. 비트 논리 연산 
+
+연산자|내용
+---|---
+AND(&) | 두 비트 모두 1인 경우에만 1
+OR(\|) | 두 비트 모두 0인 경우에만 0
+XOR(^) | 두 비트가 다르면 1, 같으면 0 
+NOT(~) | 1을 0으로, 0을 1으로 
+
++ 예제) 현재 냉장고 온도가 0도 이상인지 판단하는 코드를 작성하라. (냉장고의 온도가 0도 이상이면, 3번 비트가 1이 된다.)
+```java
+byte flag = ob00001010; //0b 또는 0B는 binery prefix
+if (flag & 0b00001000 == 0) // 어차피 and 연산이므로 비교값이 3번 비트만 0이기 때문에 flag의 3번 비트 여부만 영향 끼침
+ System.out.println("0도 이하");
+else
+ System.out.println("0도 이상"); 
+```
+2. 비트 시프트 연산
++ 저장 공간의 크기가 정해져 있으므로, 시프트되는 방향에 따라 끝에 있는 비트는 사라지게 됨
++ float, double, boolean 타입은 불가
+
+shift operator | name | meaning
+---|---
+a >> b | 산술적 오른쪽 시프트 | a의 각 비트를 오른쪽으로 b번 시프트. 최상위 비트의 빈자리는 시프트 전의 최상의 비트로 다시 채운다.
+a << b | 산술적 왼쪽 시프트 | a의 각 비트를 왼쪽으로 b번 시프트. 최하위 비트의 빈자리는 항상 0으로 채운다.
+a >>> b | 논리적 오른쪽 시프트 | a의 각 비트를 오른쪽으로 b번 시프트하고, 최상위 비트의 빈자리는 항상 0으로 채운다
+
+```java
+byte a = 5; // 0b00000101
+		byte b = (byte)(a<<2); //0b00010100 : 20
+		System.out.println("1. " + b);
+		
+
+		byte c = 20; // 0b00010100
+		byte d = (byte)(c>>>2); //0b00000101 : 5
+		System.out.println("2. " + d);
+		
+		byte e = 20; // 0b00010100
+		byte f = (byte)(e>>2); //0b00000101 : 5
+		System.out.println("3. " + f);
+		
+		byte g = (byte) 0xf8; // -8의 16진수 값 
+		/* 
+		2의 보수법으로 -8을 2진법으로 표현하면 8인 00001000에서 not연산인 11110111에 1 더하면 됨
+	 	근데 뒤 4비트만 보면 1+2+4 = 7이고, 1 더하면 8이므로 0111 을 1000으로 바꾸면 됨
+	 	따라서 0xf8 = 0b11111000 
+		*/
+		byte h = (byte)(g>>2); // 0b11111110 = 254 = -2 : 0xfe
+		System.out.println("3. " + h);
 ```
