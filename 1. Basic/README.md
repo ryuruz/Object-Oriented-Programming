@@ -25,7 +25,7 @@ ____
   + 논리 타입
     + boolean : 1비트, true/false
   + 정수 타입
-    + char : 2바이트, unicode
+    + char : 2바이트, unicode, 0x0000 ~ 0xFFFF
     + byte : 1바이트, -128~127
     + short : 2바이트, -32768~32767  
     + int : 4바이트, -2^31~2^31-1, jdk8부터 양수로 사용 가능
