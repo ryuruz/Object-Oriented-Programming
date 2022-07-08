@@ -222,3 +222,42 @@ byte g = (byte) 0xf8; // -8의 16진수 값
 byte h = (byte)(g>>2); // 0b11111110 = 254 = -2 : 0xfe
 System.out.println("3. " + h);
 ```
+
+___
+
+## 조건문
+### if문
+```java
+if(조건) {
+	//실행문이 한 문장인 경우 중괄호 생략 가능
+}
+```
+
+### if-else문
+```java
+if(조건1) {
+}
+else if (조건2) {
+	// elif로 줄여쓰기 불가
+}
+else if (조건3) {
+}
+else{
+}
+```
+
+### swith문
+```java
+switch (식) {
+	case 값1; // 값만 사용 가능하고, 변수나 식 사용 불가함
+		~
+		break;
+		// 실행문을 {, }로 묶지 않는다
+	case 값1;
+		~
+		break;
+	default:
+		~
+		// 생략 가능 
+}
+```
