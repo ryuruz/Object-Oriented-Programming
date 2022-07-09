@@ -1,4 +1,4 @@
-#Inheritance
+# Inheritance
 
 ### 상속의 개념
 * 객체지향의 상속
