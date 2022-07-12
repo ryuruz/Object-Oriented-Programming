@@ -3,7 +3,7 @@ class Student extends Person{}
 class Researcher extends Person{}
 class Professor extends Researcher{}
 
-public class instanceOfEx {
+public class InstanceOf {
 	static void print(Person p) {
 		if (p instanceof Person)
 			System.out.print("Person ");
