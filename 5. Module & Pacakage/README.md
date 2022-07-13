@@ -141,3 +141,8 @@ boolean bb = b.booleanValue(); // bb= true
 ## 박싱, 언박싱
 + 박싱 : 기본 타입의 값을 Wrapper 객체로 변환 `Integer ten = Integer.valueOf(10);`
 + 언박싱 : Wrapper 객체에 들어있는 기본 타입의 값을 빼내는 것 `int n = ten.intValue();`
++ 컴파일러에 의해 자동 박싱/언박싱
+```java
+Integer ten = 10; // 자동 박싱
+int n = ten; // 자동 언박싱
+```
