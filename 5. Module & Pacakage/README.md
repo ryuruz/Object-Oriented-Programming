@@ -139,5 +139,5 @@ boolean bb = b.booleanValue(); // bb= true
 `String s4 = Integer.toString(123, 7)` 123을 7진수의 문자열으로 변환
 
 ## 박싱, 언박싱
-+ 박싱 : 기본 타입의 값을 Wrapper 객체로 변환
-+ 언박싱 : Wrapper 객체에 들어있는 기본 타입의 값을 빼내는 것
++ 박싱 : 기본 타입의 값을 Wrapper 객체로 변환 `Integer ten = Integer.valueOf(10);`
++ 언박싱 : Wrapper 객체에 들어있는 기본 타입의 값을 빼내는 것 `int n = ten.intValue();`
