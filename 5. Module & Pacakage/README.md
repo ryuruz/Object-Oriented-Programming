@@ -146,3 +146,99 @@ boolean bb = b.booleanValue(); // bb= true
 Integer ten = 10; // 자동 박싱
 int n = ten; // 자동 언박싱
 ```
+___
+
+## String의 특징과 객체 생성
++ java.lang.String
++ 하나의 문자열 표현
++ 생성방법
+   + `String s = "Hello";` 
+      + 스트링 리터럴 테이블에 저장
+      + 동일한 문자열을 중복하여 저장할 수 없음 => 동일한 문자열이 있다면 동일한 주소(레퍼런스)를 가리키고 있는 것임
+   + `String t = new String("Hello")` 
+      + 힙 메모리에 저장
+      + 각각의 객체들을 생성하여, 동일한 문자열도 지정 가능
++ 스트링 객체는 수정 불가능 -> 원하는 객체 새로 생성하기
++ 스트링 비교시 equals() 사용
+
+## 문자열 메소드
++ +연산자로 문자열 연결
++ 피연선자에 문자열이나 객체가 포함되어 있는 경우 
+   + 객체는 toString() 메소드를 호출하여 문자열로 변환하여 연결됨
+   + 기본 타입 값은 문자열로 변환하여 연결됨
++ String concat(String str)을 이용한 문자열 연결
+   + `I Love ".concat("JAVA. ")` >> I Love JAVA.
+   + 기존 스트링 객체에 연결되지 않고 새로운 스트링 객체를 리턴
+
++ 문자열 접근
+   + 공백 제거 : `String Trim()` 문자열 앞 뒤 공백 문자를 제거한 문자열 리턴
+   + 문자열 내의 문자 접근 : `String CharAt(int index)` 문자열 내 인덱스에 속하는 문자에 접근
+ 
+## StringBuffer 클래스
++ java.lang.StringBuffe
++ 가변 크기의 문자열 저장 클래스
++ 문자열 변경 가능
++ 객체 크기는 스트링 길이에 따라 가변적
+
+## StringTokenizer 클래스
++ java.util.StringTokenizer
++ `StringTokenizer st = new StringTokenizer("name = Jihyun&Tinny", "&")`
++ 하나의 문자열을 여러 문자열로 분리
++ 구분 문자(delimiter) : 분리할 떄 기준이 되는 기준 문자
++ 토큰(token) : 구분 문자로 분리딘 문자열, 구분 문자는 토큰에 속하지 않음
+
+## Math 클래스
++ java.lang.Math -> 기본이라 import 필요 없음
++ 난수 발생 `static double random()`
+   + 0.0이상 1.0미만의 임의의 double 값 반환
+   + <-> java.util.Random 클래스도 존재
+```java
+// 0에서 100 사이의 난수를 10개 발생시키는 샘플 코드
+for (int x = 0; x<10; x++){
+   int n = (int)(Math.random()*100 + 1);
+   System.out.println(n);
+   }
+```
+
+## Calendar 클래스
++ java.util 패키지
++ 추상 클래스 => 추상 메소드로 이루어짐 => 사용하면 직접 정의해주어야 함
++ 객체 생성 `Calandar now = Calendar.getInstance();`
++ 날짜, 시간 알아내기 : get
++ 설정하기 : set
+
+___
+
+# 컬렉션과 제네릭
+
+## 컬렉션(Collection)의 개념
++ 컬렉션 : 요소(element) 객체들의 저장소
++ 요소들의 개수에 따라 크기를 자동 조절함
++ 요소의 삽입, 삭제에 따른 요소의 위치 자동 이용
++ 고정 크기의 배열을 다루는 어려움 해소
++ 다양한 객체들의 삽입, 삭제, 검색 등의 관리 용이
++ 컬렉션의 요소는 객체만 가능 => __int, char, double 등의 기본 타입 사용 불가 => Wrapper 이용__
+
+## 제네릭(Generics)
++ 컬렉션은 제네릭 기법으로 구현
++ 특정 타입만 다루지 않고, 여러 종류의 타입으로 정할 수 있도록 클래스나 메소드를 일반화시키는 기법 
++ \<E\>, \<K\>, \<V\>의 타입 매개 변수(요소 타입을 일반화한 타입) 이용
+
+## 제네릭 Stack \<E\> 클래스의 메뉴얼 
++ 스택 생성 : ` Stack<E> myStack = new Stack<E> ();`
++ 메소드
+```java
+Boolean empty() // 스택이 비어있는지 확인
+E peek() // 요소를 제거하지 않고 스택에서 가장 위에있는 요소를 리턴
+E pop() // 가장 위에 있는 요소를 제거하면서 꺼내옴
+E push(item) // 요소를 스택의 가장 최상위에 집어 넣음
+```
+
+## Vector \<E\>
++ java.util.Vector
++ <\E\>에서 E 대신 요소로 사용할 특정 타입으로 구체화
++ 여러 객체들을 삽입, 삭제, 검색하는 컨테이너 클래스
++ 객체, null 삽입 가능. 기본 타입은 Wrapper 객체로 만들어서 저장해야 함
++ 객체 삽입 : 맨 뒤 또는 중간에 객체 추가 
++ 객체 삭제 : 임의의 위치에 있는 객체 삭제 가능, 삭제 후 자동으로 자리 정렬
++ `Vector v = new Vector();` 처럼 타입 매개 변수를 생략하면 안 됨
